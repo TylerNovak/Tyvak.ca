@@ -122,6 +122,44 @@ function arlo_tm_kenburn_slider(){
 	});
 }
 
+// -------------------------------------------------
+// -------------  MODALBOX NEWS  -------------------
+// -------------------------------------------------
+
+function arlo_tm_modalbox_news(){
+	
+	"use strict";
+	
+	var modalBox	= jQuery('.arlo_tm_modalbox_news');
+	var list 		= jQuery('.arlo_tm_news .news_list ul li');
+	var closePopup	= modalBox.find('.close');
+	
+	list.each(function(){
+		var element 	= jQuery(this);
+		var details 	= element.find('.list_inner').html();
+		var buttons 	= element.find('.details .title a,.arlo_tm_full_link');
+		var mainImage	= element.find('.main');
+		var imgData		= mainImage.data('img-url');
+		var title		= element.find('.title');
+		var titleHref	= element.find('.title a').html();
+		buttons.on('click',function(){
+			jQuery('body').addClass('modal');
+			modalBox.addClass('opened');
+			modalBox.find('.description_wrap').html(details);
+			mainImage = modalBox.find('.main');
+			mainImage.css({backgroundImage: 'url('+imgData+')'});
+			title = modalBox.find('.title');
+			title.html(titleHref);
+			return false;
+		});
+	});
+	closePopup.on('click',function(){
+		modalBox.removeClass('opened');
+		modalBox.find('.description_wrap').html('');
+		jQuery('body').removeClass('modal');
+		return false;
+	});	
+}
 
 // -------------------------------------------------
 // -------------   TOPBAR BG SCROLL  ---------------
@@ -406,6 +444,46 @@ function arlo_tm_jarallax(){
 	});
 }
 
+// -------------------------------------------------
+// -----------------    PORTFOLIO    ---------------
+// -------------------------------------------------
+
+// filterable 
+
+function arlo_tm_portfolio(){
+
+	"use strict";
+
+	if(jQuery().isotope) {
+
+		// Needed variables
+		var list 		 = jQuery('.arlo_tm_portfolio .portfolio_list ul');
+		var filter		 = jQuery('.arlo_tm_portfolio .portfolio_filter ul');
+
+		if(filter.length){
+			// Isotope Filter 
+			filter.find('a').on('click', function(){
+				var selector = jQuery(this).attr('data-filter');
+				list.isotope({ 
+					filter				: selector,
+					animationOptions	: {
+						duration			: 750,
+						easing				: 'linear',
+						queue				: false
+					}
+				});
+				return false;
+			});	
+
+			// Change active element class
+			filter.find('a').on('click', function() {
+				filter.find('a').removeClass('current');
+				jQuery(this).addClass('current');
+				return false;
+			});	
+		}
+	}
+}
 
 function arlo_tm_projects() {
 	
@@ -430,6 +508,21 @@ function arlo_tm_projects() {
 	});
 }
 
+// -----------------------------------------------------
+// --------------    ISOTOPE MASONRY    ----------------
+// -----------------------------------------------------
+
+function arlo_tm_isotope(){
+	
+	"use strict";
+	
+	jQuery('.masonry').isotope({
+		itemSelector: '.masonry_item',
+		masonry: {
+			
+		}
+	});
+}
 
 // -----------------------------------------------------
 // ----------------    CONTACT FORM    -----------------
@@ -475,6 +568,62 @@ function arlo_tm_contact_form(){
 		}
 		return false; 
 	});
+}
+
+// -----------------------------------------------------
+// ----------------    PLACEHOLDER    ------------------
+// -----------------------------------------------------
+
+function arlo_tm_location(){
+	var button		= jQuery('.href_location');
+	button.on('click',function(){
+		var element		= jQuery(this);
+		var address		= element.text();
+		address			= address.replace(/\ /g,'+');
+		var text		= 'https://maps.google.com?q=';
+		window.open(text+address);
+		return false;
+	});
+}
+
+// -------------------------------------------------
+// -------------  RIPPLE  --------------------------
+// -------------------------------------------------
+
+function arlo_tm_ripple(){
+	
+	"use strict";
+	
+	jQuery('#ripple').ripples({
+			resolution: 500,
+			dropRadius: 20,
+			perturbance: 0.04
+		});
+}
+
+// -------------------------------------------------
+// -------------  GLITCH  --------------------------
+// -------------------------------------------------
+
+$(".glitch").mgGlitch({
+	destroy: false,
+	glitch: true,
+	scale: true,
+	blend: true,
+	blendModeType: "hue",
+	glitch1TimeMin: 200,
+	glitch1TimeMax: 400,
+	glitch2TimeMin: 10,
+	glitch2TimeMax: 100
+});
+
+// -------------------------------------------------
+// -------------  VIDEO PLAYER ---------------------
+// -------------------------------------------------
+
+function arlo_tm_videoplayer(){
+	"use strict";
+	$(".youtube-bg").mb_YTPlayer();
 }
 
 // -----------------------------------------------------
