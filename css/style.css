@@ -708,6 +708,37 @@ h6 { font-size: 16px; }
 }
 .arlo_tm_button a:hover:before{width: 150%;}
 
+.submitbutton{
+	width: 220px;
+	height: 55px;
+	clear: both;
+	float: left;
+}
+.submitbutton{
+	text-decoration: none;
+	font-size: 17px;
+	color: #fff;
+	background-color: #e65f78;
+	display: inline-block;
+	padding: 12px 45px;
+	font-family: "Poppins";
+	position: relative;
+	overflow: hidden;
+}
+.submitbutton:before{
+	position: absolute;
+    content: "";
+    top: 0px;
+    height: 100%;
+    left: -25%;
+    width: 0%;
+    background-color: rgba(255,255,255,.1);
+    transform: skew(50deg);
+    transition-duration: .6s;
+    z-index: 1;
+}
+.submitbutton:hover:before{width: 150%;}
+
 /*---------------------------------------------------*/
 /*	06) ARLO SERVICES
 /*---------------------------------------------------*/
